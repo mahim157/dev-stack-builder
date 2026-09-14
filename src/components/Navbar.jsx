@@ -8,9 +8,11 @@ export default function Navbar() {
           
           {/* Left: Logo & Brand Name */}
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs shadow-sm">
-              DS
-            </div>
+            <img 
+              src="/images/logo.png" 
+              alt="Dev Stack Logo" 
+              className="w-8 h-8 object-contain rounded-md" 
+            />
             <span className="font-bold text-xl text-slate-800 tracking-tight">
               Dev<span className="text-pink-500">Stack</span>
             </span>
@@ -57,9 +59,11 @@ export default function Navbar() {
 
           {/* Mobile Center: Logo */}
           <div className="flex items-center gap-1.5">
-            <div className="w-7 h-7 rounded-md bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center text-white font-bold text-[10px]">
-              DS
-            </div>
+            <img 
+              src="/images/logo.png" 
+              alt="Dev Stack Logo" 
+              className="w-7 h-7 object-contain rounded-md" 
+            />
             <span className="font-bold text-lg text-slate-800">
               Dev<span className="text-pink-500">Stack</span>
             </span>
