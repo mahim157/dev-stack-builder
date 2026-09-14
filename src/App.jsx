@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -55,36 +54,48 @@ export default function App() {
       <ToastContainer autoClose={2000} />
 
       <div>
+        {/* Updated Header Layout */}
         <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <button className="md:hidden text-slate-600 text-xl">☰</button>
-              <div className="flex items-center">
-                <img 
-                  src="/images/logo.png" 
-                  alt="Logo" 
-                  className="h-8 w-auto object-contain" 
-                />
-              </div>
+            
+            {/* Left: Hamburger menu (Mobile) & Desktop Links */}
+            <div className="flex items-center space-x-6">
+              <button className="md:hidden text-slate-700 text-2xl focus:outline-none">
+                ☰
+              </button>
+
+              <nav className="hidden md:flex space-x-8 text-xs font-medium text-slate-500">
+                <a href="#" className="text-pink-500 font-semibold">Home</a>
+                <a href="#technologies" className="hover:text-slate-900 transition">Technologies</a>
+                <a href="#" className="hover:text-slate-900 transition">Projects</a>
+                <a href="#" className="hover:text-slate-900 transition">About</a>
+                <a href="#" className="hover:text-slate-900 transition">Contact</a>
+              </nav>
             </div>
 
-            <nav className="hidden md:flex space-x-8 text-xs font-medium text-slate-500">
-              <a href="#" className="text-pink-500 font-semibold">Home</a>
-              <a href="#technologies" className="hover:text-slate-900 transition">Technologies</a>
-              <a href="#" className="hover:text-slate-900 transition">Projects</a>
-              <a href="#" className="hover:text-slate-900 transition">About</a>
-              <a href="#" className="hover:text-slate-900 transition">Contact</a>
-            </nav>
+            {/* Center: Brand Logo */}
+            <div className="flex items-center justify-center">
+              <img 
+                src="/images/logo.png" 
+                alt="Logo" 
+                className="h-8 w-auto object-contain" 
+              />
+            </div>
 
-            <div className="flex items-center space-x-4">
-              <button className="text-xs font-medium text-slate-600 hover:text-slate-900">Sign In</button>
-              <button className="text-xs font-medium text-white px-5 py-2 rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:opacity-95 shadow-sm">
+            {/* Right: Sign In and Sign Up buttons */}
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <button className="text-xs font-medium text-slate-600 hover:text-slate-900 px-2 py-1">
+                Sign In
+              </button>
+              <button className="text-xs font-medium text-white px-3 sm:px-5 py-2 rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:opacity-95 shadow-sm">
                 Sign Up
               </button>
             </div>
+
           </div>
         </header>
 
+        {/* Hero Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-4 tracking-tight">
@@ -110,6 +121,7 @@ export default function App() {
           </div>
         </section>
 
+        {/* Title Section */}
         <div id="technologies" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
           <h2 className="text-2xl font-black text-slate-900">
             Explore the <span className="text-pink-500">Technologies</span>
@@ -117,12 +129,14 @@ export default function App() {
           <p className="text-xs text-slate-400 mt-1">Pick one technology per category to build your ideal stack.</p>
         </div>
 
+        {/* Main Section */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
           {loading ? (
             <div className="text-center py-20 text-slate-400 text-sm">Loading technologies...</div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
               
+              {/* Technologies List Grid */}
               <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                 {technologies.map((tech) => {
                   const isAdded = stack.some(
@@ -175,6 +189,7 @@ export default function App() {
                 })}
               </div>
 
+              {/* Sidebar Stack View */}
               <div className="lg:col-span-1">
                 <div className="bg-slate-50/50 border border-slate-100 rounded-lg p-5 sticky top-24">
                   <h3 className="font-bold text-slate-900 text-sm">Your Stack</h3>
@@ -221,6 +236,7 @@ export default function App() {
         </main>
       </div>
 
+      {/* Footer */}
       <footer className="border-t border-slate-100 bg-white py-12 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-xs">
           <div>
