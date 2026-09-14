@@ -54,18 +54,15 @@ export default function App() {
       <ToastContainer autoClose={2000} />
 
       <div>
-        {/* Updated Header */}
+        {/* Header */}
         <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
             
-            {/* Left: Mobile Hamburger & Desktop Logo */}
             <div className="flex items-center space-x-3">
-              {/* Mobile Hamburger Icon */}
               <button className="md:hidden text-slate-700 text-2xl focus:outline-none">
                 ☰
               </button>
 
-              {/* Brand Logo */}
               <div className="flex items-center">
                 <img 
                   src="/images/logo.png" 
@@ -75,7 +72,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Center: Navigation Links (Desktop screen standard position) */}
             <nav className="hidden md:flex space-x-8 text-xs font-medium text-slate-500">
               <a href="#" className="text-pink-500 font-semibold">Home</a>
               <a href="#technologies" className="hover:text-slate-900 transition">Technologies</a>
@@ -84,7 +80,6 @@ export default function App() {
               <a href="#" className="hover:text-slate-900 transition">Contact</a>
             </nav>
 
-            {/* Right: Sign In and Sign Up buttons */}
             <div className="flex items-center space-x-2 sm:space-x-4">
               <button className="text-xs font-medium text-slate-600 hover:text-slate-900 px-2 py-1">
                 Sign In
@@ -138,7 +133,7 @@ export default function App() {
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
               
-              {/* Technologies Grid */}
+              {/* Technologies Grid with Hover Effect */}
               <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                 {technologies.map((tech) => {
                   const isAdded = stack.some(
@@ -148,10 +143,10 @@ export default function App() {
                   return (
                     <div
                       key={tech.id}
-                      className={`bg-white rounded-lg p-5 flex flex-col justify-between transition ${
+                      className={`bg-white rounded-lg p-5 flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-1.5 hover:shadow-xl ${
                         isAdded
                           ? 'border-2 border-emerald-500 shadow-md'
-                          : 'border border-slate-100 hover:shadow'
+                          : 'border border-slate-100 hover:border-slate-200 shadow-xs'
                       }`}
                     >
                       <div>
