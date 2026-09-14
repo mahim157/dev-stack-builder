@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,7 +22,6 @@ export default function App() {
   }, []);
 
   const handleAddToStack = (tech) => {
-    // String(id) এবং name উভয় উপায়ে নিখুঁতভাবে চেক করা হচ্ছে
     const isAlreadyAdded = stack.some(
       (item) => String(item.id) === String(tech.id) || item.name === tech.name
     );
@@ -30,7 +30,7 @@ export default function App() {
       toast.warning(`${tech.name} is already in your stack!`, {
         position: 'top-right',
       });
-      return; // ডুপ্লিকেট হলে এখানেই কোড থেমে যাবে, ২য় বার যোগ হবে না
+      return;
     }
 
     setStack([...stack, tech]);
@@ -130,7 +130,14 @@ export default function App() {
                   );
 
                   return (
-                    <div key={tech.id} className="bg-white border border-slate-100 rounded-lg p-5 shadow-sm flex flex-col justify-between hover:shadow transition">
+                    <div
+                      key={tech.id}
+                      className={`bg-white rounded-lg p-5 flex flex-col justify-between transition ${
+                        isAdded
+                          ? 'border-2 border-emerald-500 shadow-md'
+                          : 'border border-slate-100 hover:shadow'
+                      }`}
+                    >
                       <div>
                         <div className="flex justify-between items-start mb-4">
                           <img src={tech.icon} alt={tech.name} className="w-6 h-6 object-contain" />
