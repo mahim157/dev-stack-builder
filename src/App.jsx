@@ -20,24 +20,30 @@ export default function App() {
       });
   }, []);
 
-  // Add to Stack Functionality
   const handleAddToStack = (tech) => {
-    const isAlreadyAdded = stack.some((item) => item.id === tech.id);
+    // String(id) এবং name উভয় উপায়ে নিখুঁতভাবে চেক করা হচ্ছে
+    const isAlreadyAdded = stack.some(
+      (item) => String(item.id) === String(tech.id) || item.name === tech.name
+    );
+
     if (isAlreadyAdded) {
-      toast.warning(`${tech.name} is already in your stack!`, { position: 'top-right' });
-      return;
+      toast.warning(`${tech.name} is already in your stack!`, {
+        position: 'top-right',
+      });
+      return; // ডুপ্লিকেট হলে এখানেই কোড থেমে যাবে, ২য় বার যোগ হবে না
     }
+
     setStack([...stack, tech]);
-    toast.success(`${tech.name} added to stack!`, { position: 'top-right' });
+    toast.success(`${tech.name} added to stack!`, {
+      position: 'top-right',
+    });
   };
 
-  // Remove Single Item Functionality
   const handleRemoveFromStack = (id, name) => {
-    setStack(stack.filter((item) => item.id !== id));
+    setStack(stack.filter((item) => String(item.id) !== String(id)));
     toast.info(`${name} removed from stack.`, { position: 'top-right' });
   };
 
-  // Remove All Functionality
   const handleClearStack = () => {
     if (stack.length === 0) return;
     setStack([]);
@@ -49,7 +55,6 @@ export default function App() {
       <ToastContainer autoClose={2000} />
 
       <div>
-        {/* Header / Navbar */}
         <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -80,7 +85,6 @@ export default function App() {
           </div>
         </header>
 
-        {/* Hero Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-4 tracking-tight">
@@ -106,7 +110,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* Section Title */}
         <div id="technologies" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
           <h2 className="text-2xl font-black text-slate-900">
             Explore the <span className="text-pink-500">Technologies</span>
@@ -114,17 +117,18 @@ export default function App() {
           <p className="text-xs text-slate-400 mt-1">Pick one technology per category to build your ideal stack.</p>
         </div>
 
-        {/* Main Container */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
           {loading ? (
             <div className="text-center py-20 text-slate-400 text-sm">Loading technologies...</div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
               
-              {/* Technology Grid */}
               <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                 {technologies.map((tech) => {
-                  const isAdded = stack.some((item) => item.id === tech.id);
+                  const isAdded = stack.some(
+                    (item) => String(item.id) === String(tech.id) || item.name === tech.name
+                  );
+
                   return (
                     <div key={tech.id} className="bg-white border border-slate-100 rounded-lg p-5 shadow-sm flex flex-col justify-between hover:shadow transition">
                       <div>
@@ -150,10 +154,9 @@ export default function App() {
 
                         <button
                           onClick={() => handleAddToStack(tech)}
-                          disabled={isAdded}
                           className={`w-full py-2.5 rounded-md text-xs font-semibold transition ${
                             isAdded
-                              ? 'bg-emerald-50 text-emerald-600 border border-emerald-200 cursor-not-allowed'
+                              ? 'bg-emerald-50 text-emerald-600 border border-emerald-200 cursor-pointer'
                               : 'bg-slate-900 text-white hover:bg-slate-800'
                           }`}
                         >
@@ -165,7 +168,6 @@ export default function App() {
                 })}
               </div>
 
-              {/* Sidebar: Your Stack (1-Column Layout) */}
               <div className="lg:col-span-1">
                 <div className="bg-slate-50/50 border border-slate-100 rounded-lg p-5 sticky top-24">
                   <h3 className="font-bold text-slate-900 text-sm">Your Stack</h3>
@@ -212,11 +214,8 @@ export default function App() {
         </main>
       </div>
 
-      {/* Footer */}
       <footer className="border-t border-slate-100 bg-white py-12 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-xs">
-          
-          {/* Brand Block - Only Image Logo */}
           <div>
             <div className="flex items-center mb-3">
               <img 
@@ -235,7 +234,6 @@ export default function App() {
             </div>
           </div>
 
-          {/* Link Group: Product */}
           <div>
             <h4 className="font-bold text-slate-900 mb-3 uppercase tracking-wider">Product</h4>
             <ul className="space-y-2 text-slate-400">
@@ -245,7 +243,6 @@ export default function App() {
             </ul>
           </div>
 
-          {/* Link Group: Company */}
           <div>
             <h4 className="font-bold text-slate-900 mb-3 uppercase tracking-wider">Company</h4>
             <ul className="space-y-2 text-slate-400">
@@ -255,7 +252,6 @@ export default function App() {
             </ul>
           </div>
 
-          {/* Link Group: Legal */}
           <div>
             <h4 className="font-bold text-slate-900 mb-3 uppercase tracking-wider">Legal</h4>
             <ul className="space-y-2 text-slate-400">
@@ -265,7 +261,6 @@ export default function App() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-slate-50 flex flex-col sm:flex-row justify-between items-center text-[11px] text-slate-400 gap-2 sm:gap-0">
           <p>© 2026 Dev Stack. All rights reserved.</p>
           <div className="flex space-x-4">
