@@ -54,33 +54,35 @@ export default function App() {
       <ToastContainer autoClose={2000} />
 
       <div>
-        {/* Updated Header Layout */}
+        {/* Updated Header */}
         <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
             
-            {/* Left: Hamburger menu (Mobile) & Desktop Links */}
-            <div className="flex items-center space-x-6">
+            {/* Left: Mobile Hamburger & Desktop Logo */}
+            <div className="flex items-center space-x-3">
+              {/* Mobile Hamburger Icon */}
               <button className="md:hidden text-slate-700 text-2xl focus:outline-none">
                 ☰
               </button>
 
-              <nav className="hidden md:flex space-x-8 text-xs font-medium text-slate-500">
-                <a href="#" className="text-pink-500 font-semibold">Home</a>
-                <a href="#technologies" className="hover:text-slate-900 transition">Technologies</a>
-                <a href="#" className="hover:text-slate-900 transition">Projects</a>
-                <a href="#" className="hover:text-slate-900 transition">About</a>
-                <a href="#" className="hover:text-slate-900 transition">Contact</a>
-              </nav>
+              {/* Brand Logo */}
+              <div className="flex items-center">
+                <img 
+                  src="/images/logo.png" 
+                  alt="Logo" 
+                  className="h-8 w-auto object-contain" 
+                />
+              </div>
             </div>
 
-            {/* Center: Brand Logo */}
-            <div className="flex items-center justify-center">
-              <img 
-                src="/images/logo.png" 
-                alt="Logo" 
-                className="h-8 w-auto object-contain" 
-              />
-            </div>
+            {/* Center: Navigation Links (Desktop screen standard position) */}
+            <nav className="hidden md:flex space-x-8 text-xs font-medium text-slate-500">
+              <a href="#" className="text-pink-500 font-semibold">Home</a>
+              <a href="#technologies" className="hover:text-slate-900 transition">Technologies</a>
+              <a href="#" className="hover:text-slate-900 transition">Projects</a>
+              <a href="#" className="hover:text-slate-900 transition">About</a>
+              <a href="#" className="hover:text-slate-900 transition">Contact</a>
+            </nav>
 
             {/* Right: Sign In and Sign Up buttons */}
             <div className="flex items-center space-x-2 sm:space-x-4">
@@ -129,14 +131,14 @@ export default function App() {
           <p className="text-xs text-slate-400 mt-1">Pick one technology per category to build your ideal stack.</p>
         </div>
 
-        {/* Main Section */}
+        {/* Main Content */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
           {loading ? (
             <div className="text-center py-20 text-slate-400 text-sm">Loading technologies...</div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
               
-              {/* Technologies List Grid */}
+              {/* Technologies Grid */}
               <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                 {technologies.map((tech) => {
                   const isAdded = stack.some(
@@ -189,7 +191,7 @@ export default function App() {
                 })}
               </div>
 
-              {/* Sidebar Stack View */}
+              {/* Sidebar */}
               <div className="lg:col-span-1">
                 <div className="bg-slate-50/50 border border-slate-100 rounded-lg p-5 sticky top-24">
                   <h3 className="font-bold text-slate-900 text-sm">Your Stack</h3>
